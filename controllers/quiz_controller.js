@@ -10,7 +10,7 @@ exports.show = function (req,res){
 //GET quizes/answer
 exports.answer = function(req,res){
 	models.Quiz.find(req.params.quizId).then(function(quiz){
-		if(req.query.respuesta===quiz[0].respuesta){
+		if(req.query.respuesta===quiz.respuesta){
 			res.render('quizes/answer',
 						{quiz: quiz, respuesta:'Correcto'});		
 		}else{
@@ -22,7 +22,7 @@ exports.answer = function(req,res){
 
 // GET quizes
 exports.index = function(req,res){
-	models.Quiz.findAll().then(function(){
+	models.Quiz.findAll().then(function(quizes){
 		res.render('quizes/index.ejs',{quizes:quizes});
 	})
 }
